@@ -1,0 +1,95 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Kanit', sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff7dc;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='%23ffa8e4' fill-opacity='0.4'%3E%3Cpolygon fill-rule='evenodd' points='8 4 12 6 8 8 6 12 4 8 0 6 4 4 6 0 8 4'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* กล่องหลัก */
+.container {
+  width: 420px;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+/* หัวข้อ */
+.container h2 {
+  margin-bottom: 0.5rem;
+  color: #d6397a;
+}
+
+/* ตัวเลขนับ */
+.count {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #e637ab;
+  margin: 1rem 0;
+}
+
+/* input */
+input[type="text"] {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+/* ตอน focus */
+input[type="text"]:focus {
+  border-color: #5a4ff3;
+  box-shadow: 0 0 0 3px rgba(90, 79, 243, 0.2);
+}
+
+/* placeholder */
+input::placeholder {
+  color: #aaa;
+}
+
+/* responsive */
+@media (max-width: 480px) {
+  .container {
+    width: 90%;
+  }
+}
+/* ส่วน Assignment */
+.assignment {
+  margin-top: 2.5rem;
+  text-align: center;
+  padding: 1.2rem 2rem;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(6px);
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* หัวข้อ assignment */
+.assignment h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  color: #d318aa;
+  letter-spacing: 1px;
+}
+
+/* ชื่อ-รหัส */
+.assignment p {
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #222;
+}
+
