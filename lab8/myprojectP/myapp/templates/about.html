@@ -1,0 +1,212 @@
+{% extends "Base.html" %}
+{% block title %}About - Sea & Stars Gallery{% endblock %}
+
+{% block hero %}
+<section class="hero">
+  <h1>Sea & Stars Gallery 🌊✨</h1>
+  <p>Welcome to our gallery of oceanic and celestial beauty.</p>
+</section>
+{% endblock %}
+
+{% block content %}
+<style>
+  .gallery{
+    display:grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 14px;
+    margin-top: 14px;
+  }
+  .tile{
+    grid-column: span 4;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.20);
+    box-shadow: 0 16px 40px rgba(0,0,0,.18);
+    background: rgba(255,255,255,.10);
+    cursor: pointer;
+    position: relative;
+    transform: translateY(8px);
+    opacity: 0;
+    transition: .22s ease;
+  }
+  .tile.show{ transform: translateY(0); opacity: 1; }
+  .tile img{
+    width:100%;
+    height: 220px;
+    object-fit: cover;
+    display:block;
+    transform: scale(1.02);
+    transition: .25s ease;
+    filter: saturate(1.05) contrast(1.03);
+  }
+  .tile:hover img{ transform: scale(1.08); }
+  .badge{
+    position:absolute;
+    left: 12px; top: 12px;
+    padding: 8px 10px;
+    border-radius: 999px;
+    background: rgba(0,0,0,.28);
+    border: 1px solid rgba(255,255,255,.18);
+    color: rgba(255,255,255,.92);
+    font-weight: 700;
+    font-size: 12px;
+    backdrop-filter: blur(10px);
+  }
+
+  /* modal */
+  .modal{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    z-index: 999;
+  }
+  .modal.show{ display:flex; }
+  .modal-card{
+    width: min(980px, 95vw);
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.20);
+    background: rgba(255,255,255,.10);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 24px 70px rgba(0,0,0,.35);
+    position: relative;
+  }
+  .modal-card img{
+    width:100%;
+    max-height: 78vh;
+    object-fit: cover;
+    display:block;
+  }
+  .close{
+    position:absolute;
+    top: 10px; right: 10px;
+    border: 0;
+    cursor: pointer;
+    padding: 10px 12px;
+    border-radius: 999px;
+    background: rgba(0,0,0,.35);
+    color: white;
+    font-weight: 800;
+    border: 1px solid rgba(255,255,255,.18);
+  }
+
+  @media (max-width: 900px){ .tile{ grid-column: span 6; } }
+  @media (max-width: 600px){ .tile{ grid-column: span 12; } }
+</style>
+
+<div class="grid">
+  <div class="card reveal">
+    <h3>🌊 Sea</h3>
+    <p>Sea-inspired moments that feel like a slow exhale. </p>
+  </div>
+  <div class="card reveal">
+    <h3>✨ Stars</h3>
+    <p>A cosmic gallery of twinkles, wishes, and wonder.</p>
+  </div>
+  <div class="card reveal">
+    <h3>🎨 Blue Theme</h3>
+    <p>Minimal, modern, and magically blue from edge to edge.</p>
+  </div>
+</div>
+
+<div class="gallery" id="gallery">
+  <!-- 9 รูป (ทะเล + ดวงดาว) -->
+  <div class="tile reveal" data-full="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=1600">
+    <span class="badge">SEA 01</span>
+    <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=1200" alt="sea 1">
+  </div>
+
+  <div class="tile reveal" data-full="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600">
+    <span class="badge">SEA 02</span>
+    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200" alt="sea 2">
+  </div>
+
+  <div class="tile reveal" data-full="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1600">
+    <span class="badge">SEA 03</span>
+    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200" alt="sea 3">
+  </div>
+
+  <div class="tile reveal" data-full="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1600">
+    <span class="badge">STARS 01</span>
+    <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200" alt="stars 1">
+  </div>
+
+  <div class="tile reveal" data-full="https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?w=1600">
+    <span class="badge">STARS 02</span>
+    <img src="https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?w=1200" alt="stars 2">
+  </div>
+
+  <div class="tile reveal" data-full="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1600">
+    <span class="badge">STARS 03</span>
+    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200" alt="stars 3">
+  </div>
+
+  <div class="tile reveal" data-full="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=1600&crop=entropy&cs=tinysrgb">
+    <span class="badge">SEA 04</span>
+    <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=1200&crop=entropy&cs=tinysrgb" alt="sea 4">
+  </div>
+
+  <div class="tile reveal" data-full="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&crop=entropy&cs=tinysrgb">
+    <span class="badge">SEA 05</span>
+    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&crop=entropy&cs=tinysrgb" alt="sea 5">
+  </div>
+
+   <div class="tile reveal" data-full="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=1600&crop=entropy&cs=tinysrgb">
+    <span class="badge">SEA 05</span>
+    <img src="https://images.unsplash.com/photo-1501426026826-31c667bdf23d?w=1200" alt="sea 5">
+  </div>
+
+<!-- Modal -->
+<div class="modal" id="modal">
+  <div class="modal-card">
+    <button class="close" id="closeBtn">✕</button>
+    <img id="modalImg" src="" alt="preview">
+  </div>
+</div>
+
+<script>
+  // reveal tiles (ใช้ IntersectionObserver แบบเดียวกับการ์ด)
+  (function(){
+    const tiles = document.querySelectorAll(".tile.reveal");
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add("show");
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    tiles.forEach((t, idx)=>{
+      t.style.transitionDelay = (idx * 70) + "ms";
+      io.observe(t);
+    });
+  })();
+
+  // modal open/close
+  (function(){
+    const modal = document.getElementById("modal");
+    const modalImg = document.getElementById("modalImg");
+    const closeBtn = document.getElementById("closeBtn");
+
+    document.querySelectorAll(".tile").forEach(tile=>{
+      tile.addEventListener("click", ()=>{
+        modalImg.src = tile.getAttribute("data-full");
+        modal.classList.add("show");
+      });
+    });
+
+    function close(){
+      modal.classList.remove("show");
+      modalImg.src = "";
+    }
+    closeBtn.addEventListener("click", close);
+    modal.addEventListener("click", (e)=>{ if(e.target === modal) close(); });
+    document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") close(); });
+  })();
+</script>
+{% endblock %}

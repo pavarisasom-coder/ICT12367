@@ -1,0 +1,85 @@
+{% extends "Base.html" %}
+{% block title %}แบบฟอร์มบันทึกข้อมูล{% endblock %}
+
+{% block hero %}
+<section class="hero">
+  <h1>แบบฟอร์มข้อมูลนักศึกษา</h1>
+  <p>กรอกข้อมูลให้ครบ แล้วกดบันทึก</p>
+</section>
+{% endblock %}
+
+{% block content %}
+<style>
+  .form-wrap{
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 18px;
+    border-radius: 22px;
+    background: rgba(255,255,255,.14);
+    border: 1px solid rgba(255,255,255,.18);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 16px 40px rgba(0,0,0,.18);
+  }
+  .row{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .field{ display:flex; flex-direction:column; gap:6px; margin:10px 0; }
+  label{ font-weight: 600; color: rgba(255,255,255,.85); }
+  input, select, textarea{
+    padding: 12px 12px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,.20);
+    background: rgba(0,0,0,.12);
+    color: rgba(255,255,255,.92);
+    outline: none;
+    transition: .18s ease;
+  }
+  input:focus, select:focus, textarea:focus{
+    transform: translateY(-1px);
+    border-color: rgba(255,255,255,.45);
+    box-shadow: 0 0 0 4px rgba(255,255,255,.12);
+  }
+  .actions{ display:flex; gap:10px; justify-content:flex-end; margin-top: 14px; }
+  @media (max-width: 700px){ .row{ grid-template-columns:1fr; } }
+</style>
+
+<div class="form-wrap">
+  <form method="post">
+    {% csrf_token %}
+
+    <div class="row">
+      <div class="field">
+        <label>ชื่อ</label>
+        <input name="first_name" placeholder="กรอกชื่อ">
+      </div>
+      <div class="field">
+        <label>นามสกุล</label>
+        <input name="last_name" placeholder="กรอกนามสกุล">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label>รหัสนักศึกษา</label>
+        <input name="student_id" placeholder="เช่น 68012345">
+      </div>
+      <div class="field">
+        <label>สาขา</label>
+        <select name="major">
+          <option>ICT</option>
+          <option>CSI</option>
+          <option>CPE</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>หมายเหตุ</label>
+      <textarea name="note" rows="4" placeholder="เขียนเพิ่มเติมได้..."></textarea>
+    </div>
+
+    <div class="actions">
+      <a class="btn ghost" href="/">กลับหน้าแรก</a>
+      <button class="btn" type="submit">บันทึกข้อมูล →</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
