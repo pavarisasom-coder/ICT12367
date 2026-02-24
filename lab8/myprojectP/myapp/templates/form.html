@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block title %}
+แบบฟอร์มบันทึกข้อมูลประชากร
+{% endblock %}
+
+{% block content %}
+<style>
+    body{
+        background: linear-gradient(135deg, #eecda3, #ef629f);
+        min-height: 100vh;
+    }
+
+    .wrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 85vh;
+        padding: 40px 20px;
+    }
+
+    .form-card{
+        width: 720px;
+        max-width: 95%;
+        border-radius: 20px;
+        overflow: hidden;
+        border: none;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        background: white;
+    }
+
+    .form-header{
+        background: linear-gradient(90deg, #a18cd1, #fbc2eb);
+        padding: 20px;
+        font-size: 22px;
+        font-weight: bold;
+        color: #222;
+    }
+
+    .card-body{
+        padding: 35px 45px;
+    }
+
+    .form-group{
+        margin-bottom: 22px;
+    }
+
+    .form-label{
+        font-weight: 600;
+        margin-bottom: 8px;
+        display: block;
+        color: #444;
+    }
+
+    .form-control,
+    .form-select{
+        width: 100%;
+        border-radius: 8px;
+        padding: 10px 14px;
+        border: 1px solid #ddd;
+        transition: 0.3s;
+    }
+
+    .form-control:focus,
+    .form-select:focus{
+        border-color: #ef629f;
+        box-shadow: 0 0 0 0.15rem rgba(239,98,159,0.25);
+    }
+
+    .btn-custom{
+        padding: 10px 28px;
+        border-radius: 8px;
+        font-weight: 600;
+        border: none;
+    }
+
+    .btn-save{
+        background-color: #b5ead7;
+    }
+
+    .btn-save:hover{
+        background-color: #9de0c5;
+    }
+
+    .btn-reset{
+        background-color: #ffdac1;
+    }
+
+    .btn-reset:hover{
+        background-color: #ffc4a3;
+    }
+</style>
+
+<div class="wrapper">
+    <div class="card shadow-lg form-card">
+
+        <div class="card-header text-center form-header text-dark">
+             แบบฟอร์มบันทึกข้อมูลประชากร
+        </div>
+
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="row">
+                    <!-- ซ้าย -->
+                    <div class="col-md-6">
+                        <div class="mb-4">
+                            <label class="form-label">ชื่อ-นามสกุล</label>
+                            <input type="text" name="name" class="form-control" placeholder="กรอกชื่อ-นามสกุล">
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">อายุ</label>
+                            <input type="number" name="age" class="form-control" placeholder="กรอกอายุเป็นตัวเลข">
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">เพศ</label>
+                            <select name="gender" class="form-select">
+                                <option selected disabled>เลือกเพศ</option>
+                                <option>ชาย</option>
+                                <option>หญิง</option>
+                                <option>อื่นๆ</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- ขวา -->
+                    <div class="col-md-6">
+                        <div class="mb-4">
+                            <label class="form-label">ศาสนา</label>
+                            <select name="religion" class="form-select">
+                                <option selected disabled>เลือกศาสนา</option>
+                                <option>พุทธ</option>
+                                <option>คริสต์</option>
+                                <option>อิสลาม</option>
+                                <option>ฮินดู</option>
+                                <option>อื่นๆ</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">เบอร์โทร</label>
+                            <input type="tel" name="phone" class="form-control" placeholder="กรอกเบอร์โทรศัพท์">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-save btn-custom me-3">
+                        ✔ ลงทะเบียน
+                    </button>
+
+                    <button type="reset" class="btn btn-reset btn-custom">
+                        ✖ ล้างข้อมูล
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
